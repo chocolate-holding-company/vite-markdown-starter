@@ -1,0 +1,12 @@
+vite-markdown-starter/
+├── content/
+│   ├── index.md
+│   └── about.md
+├── src/
+│   ├── templates/
+│   │   └── layout.hbs
+│   ├── main.js
+│   └── style.css
+├── build-pages.js
+├── package.json
+└── vite.config.js
