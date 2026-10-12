@@ -1,33 +1,50 @@
-import { resolve } from 'path';
-import { defineConfig } from 'vite';
+import { defineConfig } from "vite";
+import fs from "fs";
+import path from "path";
 import tailwindcss from "@tailwindcss/vite";
-import fs from 'fs';
+import { markdownPagesPlugin } from "./markdown-plugin.js";
 
-// Dynamically discover all generated HTML pages
-const pagesDir = resolve(__dirname, 'src/pages');
-const htmlFiles = fs.existsSync(pagesDir) 
-  ? fs.readdirSync(pagesDir).filter(file => file.endsWith('.html'))
-  : ['index.html'];
+const pagesDir = path.resolve(import.meta.dirname, "src/pages");
 
-const input = {};
-htmlFiles.forEach(file => {
-  const name = file.replace(/\.html$/, '');
-  input[name] = resolve(pagesDir, file);
-});
+// Recursively find all index.html files for nested nice URLs
+function getHtmlInputs(dir, base = "") {
+ let inputs = {};
+ if (!fs.existsSync(dir)) return inputs;
+
+ const list = fs.readdirSync(dir);
+ list.forEach((file) => {
+  const filePath = path.join(dir, file);
+  const stat = fs.statSync(filePath);
+
+  if (stat && stat.isDirectory()) {
+   const subInputs = getHtmlInputs(filePath, path.join(base, file));
+   inputs = { ...inputs, ...subInputs };
+  } else if (file === "index.html") {
+   const name = base === "" ? "index" : base;
+   inputs[name] = filePath;
+  }
+ });
+ return inputs;
+}
+
+const input = getHtmlInputs(pagesDir);
 
 export default defineConfig({
-  root: 'src/pages',
-  publicDir: '../../public',
-  plugins: [tailwindcss()],
-  build: {
-    outDir: '../../dist',
-    emptyOutDir: true,
-    rollupOptions: {
-      input: input.index ? input : { index: resolve(__dirname, 'src/pages/index.html') }
-    }
+ root: "src/pages",
+ publicDir: "../../public",
+ plugins: [tailwindcss(), markdownPagesPlugin()],
+ build: {
+  outDir: "../../dist",
+  emptyOutDir: true,
+  rollupOptions: {
+   input:
+    Object.keys(input).length > 0
+     ? input
+     : { index: path.join(pagesDir, "index.html") },
   },
-  server: {
-    port: 3000,
-    open: true
-  }
+ },
+ server: {
+  port: 3000,
+  open: true,
+ },
 });

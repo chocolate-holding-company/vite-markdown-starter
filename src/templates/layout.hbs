@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="../css/main.css">
+    {{> meta}}
+    <link rel="stylesheet" href="/css/main.css">
   </head>
-  <body class="max-w-6xl mx-auto p-10 leading-6 text-slate-700">
-    <header>
-      <nav class="mb-10">
-        <a href="index.html">Home</a> | 
-        <a href="about.html">About</a>
-      </nav>
-    </header>
+  <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <main>
-      {{{content}}}
-    </main>
+    <div>
+      {{> header}}
 
-    <footer>
-      <p>&copy; 2026 My Static Site</p>
-    </footer>
+      <main class="max-w-3xl mx-auto p-6 mt-6">
+        {{{content}}}
+        {{> tags}}
+      </main>
+    </div>
+
+    {{> footer}}
+
+    <script type="module" src="/js/main.js"></script>
   </body>
 </html>
