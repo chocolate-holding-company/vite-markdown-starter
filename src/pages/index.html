@@ -64,13 +64,32 @@
   <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
     <div>
-      <header style="background-image: url(/assets/hero.png);" class="bg-slate-900 text-white p-4 shadow-md">
+      <header
+       style="background-image: url(/assets/hero.png);"
+       class="bg-slate-900 text-white p-4 shadow-md"
+      >
       
        <nav class="max-w-3xl mx-auto flex gap-4">
-        <a href="/" class="hover:text-sky-400">Home</a>
-        <a href="/about/" class="hover:text-sky-400">About</a>
-        <a href="/hello/" class="hover:text-sky-400">Hello</a>
-        <a href="/goodbye/" class="hover:text-sky-400">Goodbye</a>
+        <a
+         href="/"
+         aria-current="page"
+         class="text-blue-300 hover:text-blue-500 aria-[current=page]:text-red-600 aria-[current=page]:font-semibold"
+        >Home</a>
+        <a
+         href="/about/"
+         
+         class="text-blue-300 hover:text-blue-500 aria-[current=page]:text-red-600 aria-[current=page]:font-semibold"
+        >About</a>
+        <a
+         href="/hello/"
+         
+         class="text-blue-300 hover:text-blue-500 aria-[current=page]:text-red-600 aria-[current=page]:font-semibold"
+        >Hello</a>
+        <a
+         href="/goodbye/"
+         
+         class="text-blue-300 hover:text-blue-500 aria-[current=page]:text-red-600 aria-[current=page]:font-semibold"
+        >Goodbye</a>
        </nav>
       </header>
       <main class="max-w-3xl mx-auto p-6 mt-6">
@@ -84,10 +103,33 @@
 <li>Up-to-date Vite engine</li>
 </ul>
 <hr>
-<p>As well as feeding the <code>meta data</code> (<em>see <code>meta</code> partial</em>), the <code>front-matter</code> above feeds data to this <code>post gallery</code>.</p>
+<p>As well as feeding the <code>meta data</code> (<em>see <code>meta</code> partial</em>), the <code>front-matter</code> above, <em>viewing from <code>index.md</code></em>, feeds data to this <code>post gallery</code>.</p>
 <h2>Latest Articles</h2>
-<div class="grid gap-6 mt-6">
-    <article class="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
+<!-- Filter Buttons Bar -->
+<div id="tag-filters" class="flex flex-wrap gap-2 my-6">
+  <button data-tag="all" class="filter-btn bg-slate-900 text-white text-xs font-medium px-3 py-1.5 rounded-md transition cursor-pointer">
+    All Posts
+  </button>
+    <button data-tag="five" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      five
+    </button>
+    <button data-tag="four" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      four
+    </button>
+    <button data-tag="one" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      one
+    </button>
+    <button data-tag="six" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      six
+    </button>
+    <button data-tag="three" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      three
+    </button>
+    <button data-tag="two" class="filter-btn bg-slate-100 text-slate-700 text-xs font-medium px-3 py-1.5 rounded-md border border-slate-200 hover:bg-slate-200 transition cursor-pointer">
+      two
+    </button>
+</div><div id="posts-grid" class="grid gap-6 mt-6">
+    <article class="post-card p-6 bg-white rounded-xl shadow-sm border border-slate-200" data-tags="four,five,six">
       <h2 class="text-xl font-bold mb-1">
         <a href="/goodbye/" class="text-sky-600 hover:text-sky-800">Goodbye from Me</a>
       </h2>
@@ -105,7 +147,7 @@
     </span>
 </div>
     </article>
-    <article class="p-6 bg-white rounded-xl shadow-sm border border-slate-200">
+    <article class="post-card p-6 bg-white rounded-xl shadow-sm border border-slate-200" data-tags="one,two,three">
       <h2 class="text-xl font-bold mb-1">
         <a href="/hello/" class="text-sky-600 hover:text-sky-800">Hello from Him</a>
       </h2>

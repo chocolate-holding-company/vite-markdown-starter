@@ -5,10 +5,11 @@ date: 2026-06-15
 description: A wonderful 18-mile trek across the Yorkshire Dales using public buses.
 image: /assets/hero.png
 link: /hello/
+activeHello: true
 tags:
-  - one
-  - two
-  - three
+ - one
+ - two
+ - three
 ---
 
 # Hello and welcome

@@ -1,23 +1,26 @@
 @import "tailwindcss";
 
 @layer components {
-  h1 {
-    @apply text-rose-600 text-3xl;
-  }
+ h1 {
+  @apply text-rose-600 text-3xl;
+ }
 
-  h2 {
-    @apply text-rose-600 text-2xl;
-  }
+ h2 {
+  @apply text-rose-600 text-2xl;
+ }
 
-  p {
-    @apply mb-6;
-  }
+ p {
+  @apply mb-6 leading-8;
+ }
 
-  hr {
-    @apply my-6;
-  }
+ hr {
+  @apply my-6;
+ }
 
-  img {
-    @apply rounded-lg shadow-md mx-auto;
-  }
+ img {
+  @apply rounded-lg shadow-md mx-auto;
+ }
+ code {
+  @apply bg-rose-200 p-1 rounded-lg;
+ }
 }
